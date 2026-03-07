@@ -12,7 +12,10 @@ export default (req: Request, res: Response, next: NextFunction) => {
         const token = authHeader.split(" ")[1];
         if(!token) return res.status(401).json({ message: "Invalid authorization format!" });
 
-        req.user = jwt.verify(token, SECRET_KEY);
+        jwt.verify(token, SECRET_KEY);
+        const decoded = jwt.decode(token, { json: true });
+
+        if (decoded && decoded.login) req.user = { login: decoded.login };
 
         next();
     } catch (error) {
