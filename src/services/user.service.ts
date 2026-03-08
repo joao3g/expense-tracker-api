@@ -18,7 +18,7 @@ const login = async (login: string, password: string) => {
             token: jwt.sign(
                 { login }, 
                 SECRET_KEY,
-                { expiresIn: 60 * 60 }
+                { expiresIn: '1Yr' }
             ) 
         };
     } catch (error) {
