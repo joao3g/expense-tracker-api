@@ -85,7 +85,7 @@ const remove = async (req: Request, res: Response) => {
 
         await groupModel.remove(id);
 
-        return res.sendStatus(201);
+        return res.sendStatus(200);
     } catch (error) {
         console.error("[removeGroup]: ", error);
         return res.status(500).json({ message: "Failed to remove group!" })
