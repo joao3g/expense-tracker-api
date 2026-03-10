@@ -16,7 +16,7 @@ Este projeto tem como foco demonstrar boas práticas de modelagem de dados, orga
 
 ---
 
-## 📌 Funcionalidades (em desenvolvimento)
+## 📌 Funcionalidades
 
 - Cadastro de usuários
 - Organização por grupos
@@ -37,7 +37,6 @@ Este projeto tem como foco demonstrar boas práticas de modelagem de dados, orga
 
 Regras importantes:
 - Cada categoria pode ter **apenas uma meta por mês**
-- Valores financeiros utilizam `Decimal` para evitar problemas de precisão
 
 ---
 
@@ -45,7 +44,7 @@ Regras importantes:
 
 ### 1. Clonar o repositório
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/joao3g/expense-tracker-api
 cd expense-tracker-api
 ```
 
@@ -58,6 +57,8 @@ npm install
 Crie um arquivo `.env` com a variável:
 ```env
 DATABASE_URL="postgresql://user:password@localhost:5432/expense_tracker"
+SALT_ROUNDS=0
+SECRET_KEY="secret_key"
 ```
 
 ### 4. Rodar migrations
@@ -67,7 +68,7 @@ npx prisma migrate dev
 
 ## 📍 Status do Projeto
 
-🚧 Em desenvolvimento
+🚧 Em aprimoramento
 
 ## 📄 Licença
 
