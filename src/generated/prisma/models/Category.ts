@@ -192,7 +192,6 @@ export type CategoryWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   expenses?: Prisma.ExpenseListRelationFilter
   group?: Prisma.XOR<Prisma.GroupScalarRelationFilter, Prisma.GroupWhereInput>
-  goals?: Prisma.GoalListRelationFilter
 }
 
 export type CategoryOrderByWithRelationInput = {
@@ -204,7 +203,6 @@ export type CategoryOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   expenses?: Prisma.ExpenseOrderByRelationAggregateInput
   group?: Prisma.GroupOrderByWithRelationInput
-  goals?: Prisma.GoalOrderByRelationAggregateInput
 }
 
 export type CategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -219,7 +217,6 @@ export type CategoryWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   expenses?: Prisma.ExpenseListRelationFilter
   group?: Prisma.XOR<Prisma.GroupScalarRelationFilter, Prisma.GroupWhereInput>
-  goals?: Prisma.GoalListRelationFilter
 }, "id">
 
 export type CategoryOrderByWithAggregationInput = {
@@ -254,7 +251,6 @@ export type CategoryCreateInput = {
   updatedAt?: Date | string
   expenses?: Prisma.ExpenseCreateNestedManyWithoutCategoryInput
   group: Prisma.GroupCreateNestedOneWithoutCategoriesInput
-  goals?: Prisma.GoalCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUncheckedCreateInput = {
@@ -265,7 +261,6 @@ export type CategoryUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutCategoryInput
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUpdateInput = {
@@ -276,7 +271,6 @@ export type CategoryUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expenses?: Prisma.ExpenseUpdateManyWithoutCategoryNestedInput
   group?: Prisma.GroupUpdateOneRequiredWithoutCategoriesNestedInput
-  goals?: Prisma.GoalUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryUncheckedUpdateInput = {
@@ -287,7 +281,6 @@ export type CategoryUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutCategoryNestedInput
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryCreateManyInput = {
@@ -414,20 +407,6 @@ export type CategoryUpdateOneRequiredWithoutExpensesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CategoryUpdateToOneWithWhereWithoutExpensesInput, Prisma.CategoryUpdateWithoutExpensesInput>, Prisma.CategoryUncheckedUpdateWithoutExpensesInput>
 }
 
-export type CategoryCreateNestedOneWithoutGoalsInput = {
-  create?: Prisma.XOR<Prisma.CategoryCreateWithoutGoalsInput, Prisma.CategoryUncheckedCreateWithoutGoalsInput>
-  connectOrCreate?: Prisma.CategoryCreateOrConnectWithoutGoalsInput
-  connect?: Prisma.CategoryWhereUniqueInput
-}
-
-export type CategoryUpdateOneRequiredWithoutGoalsNestedInput = {
-  create?: Prisma.XOR<Prisma.CategoryCreateWithoutGoalsInput, Prisma.CategoryUncheckedCreateWithoutGoalsInput>
-  connectOrCreate?: Prisma.CategoryCreateOrConnectWithoutGoalsInput
-  upsert?: Prisma.CategoryUpsertWithoutGoalsInput
-  connect?: Prisma.CategoryWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CategoryUpdateToOneWithWhereWithoutGoalsInput, Prisma.CategoryUpdateWithoutGoalsInput>, Prisma.CategoryUncheckedUpdateWithoutGoalsInput>
-}
-
 export type CategoryCreateWithoutGroupInput = {
   id?: string
   title: string
@@ -435,7 +414,6 @@ export type CategoryCreateWithoutGroupInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   expenses?: Prisma.ExpenseCreateNestedManyWithoutCategoryInput
-  goals?: Prisma.GoalCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUncheckedCreateWithoutGroupInput = {
@@ -445,7 +423,6 @@ export type CategoryUncheckedCreateWithoutGroupInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutCategoryInput
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryCreateOrConnectWithoutGroupInput = {
@@ -493,7 +470,6 @@ export type CategoryCreateWithoutExpensesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   group: Prisma.GroupCreateNestedOneWithoutCategoriesInput
-  goals?: Prisma.GoalCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUncheckedCreateWithoutExpensesInput = {
@@ -503,7 +479,6 @@ export type CategoryUncheckedCreateWithoutExpensesInput = {
   groupId: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryCreateOrConnectWithoutExpensesInput = {
@@ -529,7 +504,6 @@ export type CategoryUpdateWithoutExpensesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   group?: Prisma.GroupUpdateOneRequiredWithoutCategoriesNestedInput
-  goals?: Prisma.GoalUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryUncheckedUpdateWithoutExpensesInput = {
@@ -539,63 +513,6 @@ export type CategoryUncheckedUpdateWithoutExpensesInput = {
   groupId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutCategoryNestedInput
-}
-
-export type CategoryCreateWithoutGoalsInput = {
-  id?: string
-  title: string
-  description?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  expenses?: Prisma.ExpenseCreateNestedManyWithoutCategoryInput
-  group: Prisma.GroupCreateNestedOneWithoutCategoriesInput
-}
-
-export type CategoryUncheckedCreateWithoutGoalsInput = {
-  id?: string
-  title: string
-  description?: string | null
-  groupId: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutCategoryInput
-}
-
-export type CategoryCreateOrConnectWithoutGoalsInput = {
-  where: Prisma.CategoryWhereUniqueInput
-  create: Prisma.XOR<Prisma.CategoryCreateWithoutGoalsInput, Prisma.CategoryUncheckedCreateWithoutGoalsInput>
-}
-
-export type CategoryUpsertWithoutGoalsInput = {
-  update: Prisma.XOR<Prisma.CategoryUpdateWithoutGoalsInput, Prisma.CategoryUncheckedUpdateWithoutGoalsInput>
-  create: Prisma.XOR<Prisma.CategoryCreateWithoutGoalsInput, Prisma.CategoryUncheckedCreateWithoutGoalsInput>
-  where?: Prisma.CategoryWhereInput
-}
-
-export type CategoryUpdateToOneWithWhereWithoutGoalsInput = {
-  where?: Prisma.CategoryWhereInput
-  data: Prisma.XOR<Prisma.CategoryUpdateWithoutGoalsInput, Prisma.CategoryUncheckedUpdateWithoutGoalsInput>
-}
-
-export type CategoryUpdateWithoutGoalsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  expenses?: Prisma.ExpenseUpdateManyWithoutCategoryNestedInput
-  group?: Prisma.GroupUpdateOneRequiredWithoutCategoriesNestedInput
-}
-
-export type CategoryUncheckedUpdateWithoutGoalsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  groupId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryCreateManyGroupInput = {
@@ -613,7 +530,6 @@ export type CategoryUpdateWithoutGroupInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expenses?: Prisma.ExpenseUpdateManyWithoutCategoryNestedInput
-  goals?: Prisma.GoalUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryUncheckedUpdateWithoutGroupInput = {
@@ -623,7 +539,6 @@ export type CategoryUncheckedUpdateWithoutGroupInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutCategoryNestedInput
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryUncheckedUpdateManyWithoutGroupInput = {
@@ -641,12 +556,10 @@ export type CategoryUncheckedUpdateManyWithoutGroupInput = {
 
 export type CategoryCountOutputType = {
   expenses: number
-  goals: number
 }
 
 export type CategoryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   expenses?: boolean | CategoryCountOutputTypeCountExpensesArgs
-  goals?: boolean | CategoryCountOutputTypeCountGoalsArgs
 }
 
 /**
@@ -666,13 +579,6 @@ export type CategoryCountOutputTypeCountExpensesArgs<ExtArgs extends runtime.Typ
   where?: Prisma.ExpenseWhereInput
 }
 
-/**
- * CategoryCountOutputType without action
- */
-export type CategoryCountOutputTypeCountGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.GoalWhereInput
-}
-
 
 export type CategorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -683,7 +589,6 @@ export type CategorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   updatedAt?: boolean
   expenses?: boolean | Prisma.Category$expensesArgs<ExtArgs>
   group?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
-  goals?: boolean | Prisma.Category$goalsArgs<ExtArgs>
   _count?: boolean | Prisma.CategoryCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["category"]>
 
@@ -720,7 +625,6 @@ export type CategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type CategoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   expenses?: boolean | Prisma.Category$expensesArgs<ExtArgs>
   group?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
-  goals?: boolean | Prisma.Category$goalsArgs<ExtArgs>
   _count?: boolean | Prisma.CategoryCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CategoryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -735,7 +639,6 @@ export type $CategoryPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     expenses: Prisma.$ExpensePayload<ExtArgs>[]
     group: Prisma.$GroupPayload<ExtArgs>
-    goals: Prisma.$GoalPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1140,7 +1043,6 @@ export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   expenses<T extends Prisma.Category$expensesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Category$expensesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExpensePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   group<T extends Prisma.GroupDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GroupDefaultArgs<ExtArgs>>): Prisma.Prisma__GroupClient<runtime.Types.Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  goals<T extends Prisma.Category$goalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Category$goalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1593,30 +1495,6 @@ export type Category$expensesArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.ExpenseScalarFieldEnum | Prisma.ExpenseScalarFieldEnum[]
-}
-
-/**
- * Category.goals
- */
-export type Category$goalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Goal
-   */
-  select?: Prisma.GoalSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Goal
-   */
-  omit?: Prisma.GoalOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.GoalInclude<ExtArgs> | null
-  where?: Prisma.GoalWhereInput
-  orderBy?: Prisma.GoalOrderByWithRelationInput | Prisma.GoalOrderByWithRelationInput[]
-  cursor?: Prisma.GoalWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.GoalScalarFieldEnum | Prisma.GoalScalarFieldEnum[]
 }
 
 /**

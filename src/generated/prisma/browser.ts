@@ -38,7 +38,7 @@ export type Category = Prisma.CategoryModel
  */
 export type Expense = Prisma.ExpenseModel
 /**
- * Model Goal
+ * Model Income
  * 
  */
-export type Goal = Prisma.GoalModel
+export type Income = Prisma.IncomeModel

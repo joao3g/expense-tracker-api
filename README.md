@@ -33,7 +33,7 @@ Este projeto tem como foco demonstrar boas práticas de modelagem de dados, orga
 - **Group**: contexto financeiro (ex: pessoal, casal)
 - **Category**: categorias de despesas por grupo
 - **Expense**: despesas financeiras
-- **Goal**: metas financeiras mensais por categoria
+- **Income**: entradas por mês
 
 Regras importantes:
 - Cada categoria pode ter **apenas uma meta por mês**

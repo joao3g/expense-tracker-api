@@ -207,6 +207,7 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   group?: Prisma.XOR<Prisma.GroupNullableScalarRelationFilter, Prisma.GroupWhereInput> | null
+  incomes?: Prisma.IncomeListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -219,6 +220,7 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   group?: Prisma.GroupOrderByWithRelationInput
+  incomes?: Prisma.IncomeOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -234,6 +236,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   group?: Prisma.XOR<Prisma.GroupNullableScalarRelationFilter, Prisma.GroupWhereInput> | null
+  incomes?: Prisma.IncomeListRelationFilter
 }, "id" | "email" | "login">
 
 export type UserOrderByWithAggregationInput = {
@@ -273,6 +276,7 @@ export type UserCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   group?: Prisma.GroupCreateNestedOneWithoutUsersInput
+  incomes?: Prisma.IncomeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -284,6 +288,7 @@ export type UserUncheckedCreateInput = {
   groupId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  incomes?: Prisma.IncomeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -295,6 +300,7 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   group?: Prisma.GroupUpdateOneWithoutUsersNestedInput
+  incomes?: Prisma.IncomeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -306,6 +312,7 @@ export type UserUncheckedUpdateInput = {
   groupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incomes?: Prisma.IncomeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -383,6 +390,11 @@ export type UserOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -437,6 +449,20 @@ export type UserUncheckedUpdateManyWithoutGroupNestedInput = {
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
+export type UserCreateNestedOneWithoutIncomesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutIncomesInput, Prisma.UserUncheckedCreateWithoutIncomesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutIncomesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutIncomesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutIncomesInput, Prisma.UserUncheckedCreateWithoutIncomesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutIncomesInput
+  upsert?: Prisma.UserUpsertWithoutIncomesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutIncomesInput, Prisma.UserUpdateWithoutIncomesInput>, Prisma.UserUncheckedUpdateWithoutIncomesInput>
+}
+
 export type UserCreateWithoutGroupInput = {
   id?: string
   name?: string | null
@@ -445,6 +471,7 @@ export type UserCreateWithoutGroupInput = {
   password: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  incomes?: Prisma.IncomeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutGroupInput = {
@@ -455,6 +482,7 @@ export type UserUncheckedCreateWithoutGroupInput = {
   password: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  incomes?: Prisma.IncomeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutGroupInput = {
@@ -497,6 +525,66 @@ export type UserScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
 }
 
+export type UserCreateWithoutIncomesInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  login: string
+  password: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  group?: Prisma.GroupCreateNestedOneWithoutUsersInput
+}
+
+export type UserUncheckedCreateWithoutIncomesInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  login: string
+  password: string
+  groupId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type UserCreateOrConnectWithoutIncomesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutIncomesInput, Prisma.UserUncheckedCreateWithoutIncomesInput>
+}
+
+export type UserUpsertWithoutIncomesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutIncomesInput, Prisma.UserUncheckedUpdateWithoutIncomesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutIncomesInput, Prisma.UserUncheckedCreateWithoutIncomesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutIncomesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutIncomesInput, Prisma.UserUncheckedUpdateWithoutIncomesInput>
+}
+
+export type UserUpdateWithoutIncomesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  login?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  group?: Prisma.GroupUpdateOneWithoutUsersNestedInput
+}
+
+export type UserUncheckedUpdateWithoutIncomesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  login?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  groupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type UserCreateManyGroupInput = {
   id?: string
   name?: string | null
@@ -515,6 +603,7 @@ export type UserUpdateWithoutGroupInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incomes?: Prisma.IncomeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutGroupInput = {
@@ -525,6 +614,7 @@ export type UserUncheckedUpdateWithoutGroupInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incomes?: Prisma.IncomeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutGroupInput = {
@@ -538,6 +628,35 @@ export type UserUncheckedUpdateManyWithoutGroupInput = {
 }
 
 
+/**
+ * Count Type UserCountOutputType
+ */
+
+export type UserCountOutputType = {
+  incomes: number
+}
+
+export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  incomes?: boolean | UserCountOutputTypeCountIncomesArgs
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserCountOutputType
+   */
+  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountIncomesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.IncomeWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -549,6 +668,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   group?: boolean | Prisma.User$groupArgs<ExtArgs>
+  incomes?: boolean | Prisma.User$incomesArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -589,6 +710,8 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "login" | "password" | "groupId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   group?: boolean | Prisma.User$groupArgs<ExtArgs>
+  incomes?: boolean | Prisma.User$incomesArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   group?: boolean | Prisma.User$groupArgs<ExtArgs>
@@ -601,6 +724,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     group: Prisma.$GroupPayload<ExtArgs> | null
+    incomes: Prisma.$IncomePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1006,6 +1130,7 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   group<T extends Prisma.User$groupArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$groupArgs<ExtArgs>>): Prisma.Prisma__GroupClient<runtime.Types.Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  incomes<T extends Prisma.User$incomesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$incomesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IncomePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1455,6 +1580,30 @@ export type User$groupArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   include?: Prisma.GroupInclude<ExtArgs> | null
   where?: Prisma.GroupWhereInput
+}
+
+/**
+ * User.incomes
+ */
+export type User$incomesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Income
+   */
+  select?: Prisma.IncomeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Income
+   */
+  omit?: Prisma.IncomeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.IncomeInclude<ExtArgs> | null
+  where?: Prisma.IncomeWhereInput
+  orderBy?: Prisma.IncomeOrderByWithRelationInput | Prisma.IncomeOrderByWithRelationInput[]
+  cursor?: Prisma.IncomeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.IncomeScalarFieldEnum | Prisma.IncomeScalarFieldEnum[]
 }
 
 /**

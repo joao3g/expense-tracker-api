@@ -185,6 +185,7 @@ export type GroupWhereInput = {
   users?: Prisma.UserListRelationFilter
   categories?: Prisma.CategoryListRelationFilter
   expenses?: Prisma.ExpenseListRelationFilter
+  incomes?: Prisma.IncomeListRelationFilter
 }
 
 export type GroupOrderByWithRelationInput = {
@@ -196,6 +197,7 @@ export type GroupOrderByWithRelationInput = {
   users?: Prisma.UserOrderByRelationAggregateInput
   categories?: Prisma.CategoryOrderByRelationAggregateInput
   expenses?: Prisma.ExpenseOrderByRelationAggregateInput
+  incomes?: Prisma.IncomeOrderByRelationAggregateInput
 }
 
 export type GroupWhereUniqueInput = Prisma.AtLeast<{
@@ -210,6 +212,7 @@ export type GroupWhereUniqueInput = Prisma.AtLeast<{
   users?: Prisma.UserListRelationFilter
   categories?: Prisma.CategoryListRelationFilter
   expenses?: Prisma.ExpenseListRelationFilter
+  incomes?: Prisma.IncomeListRelationFilter
 }, "id">
 
 export type GroupOrderByWithAggregationInput = {
@@ -243,6 +246,7 @@ export type GroupCreateInput = {
   users?: Prisma.UserCreateNestedManyWithoutGroupInput
   categories?: Prisma.CategoryCreateNestedManyWithoutGroupInput
   expenses?: Prisma.ExpenseCreateNestedManyWithoutGroupInput
+  incomes?: Prisma.IncomeCreateNestedManyWithoutGroupInput
 }
 
 export type GroupUncheckedCreateInput = {
@@ -254,6 +258,7 @@ export type GroupUncheckedCreateInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutGroupInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutGroupInput
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutGroupInput
+  incomes?: Prisma.IncomeUncheckedCreateNestedManyWithoutGroupInput
 }
 
 export type GroupUpdateInput = {
@@ -265,6 +270,7 @@ export type GroupUpdateInput = {
   users?: Prisma.UserUpdateManyWithoutGroupNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutGroupNestedInput
   expenses?: Prisma.ExpenseUpdateManyWithoutGroupNestedInput
+  incomes?: Prisma.IncomeUpdateManyWithoutGroupNestedInput
 }
 
 export type GroupUncheckedUpdateInput = {
@@ -276,6 +282,7 @@ export type GroupUncheckedUpdateInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutGroupNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutGroupNestedInput
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutGroupNestedInput
+  incomes?: Prisma.IncomeUncheckedUpdateManyWithoutGroupNestedInput
 }
 
 export type GroupCreateManyInput = {
@@ -380,6 +387,20 @@ export type GroupUpdateOneRequiredWithoutExpensesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.GroupUpdateToOneWithWhereWithoutExpensesInput, Prisma.GroupUpdateWithoutExpensesInput>, Prisma.GroupUncheckedUpdateWithoutExpensesInput>
 }
 
+export type GroupCreateNestedOneWithoutIncomesInput = {
+  create?: Prisma.XOR<Prisma.GroupCreateWithoutIncomesInput, Prisma.GroupUncheckedCreateWithoutIncomesInput>
+  connectOrCreate?: Prisma.GroupCreateOrConnectWithoutIncomesInput
+  connect?: Prisma.GroupWhereUniqueInput
+}
+
+export type GroupUpdateOneRequiredWithoutIncomesNestedInput = {
+  create?: Prisma.XOR<Prisma.GroupCreateWithoutIncomesInput, Prisma.GroupUncheckedCreateWithoutIncomesInput>
+  connectOrCreate?: Prisma.GroupCreateOrConnectWithoutIncomesInput
+  upsert?: Prisma.GroupUpsertWithoutIncomesInput
+  connect?: Prisma.GroupWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.GroupUpdateToOneWithWhereWithoutIncomesInput, Prisma.GroupUpdateWithoutIncomesInput>, Prisma.GroupUncheckedUpdateWithoutIncomesInput>
+}
+
 export type GroupCreateWithoutUsersInput = {
   id?: string
   title: string
@@ -388,6 +409,7 @@ export type GroupCreateWithoutUsersInput = {
   updatedAt?: Date | string
   categories?: Prisma.CategoryCreateNestedManyWithoutGroupInput
   expenses?: Prisma.ExpenseCreateNestedManyWithoutGroupInput
+  incomes?: Prisma.IncomeCreateNestedManyWithoutGroupInput
 }
 
 export type GroupUncheckedCreateWithoutUsersInput = {
@@ -398,6 +420,7 @@ export type GroupUncheckedCreateWithoutUsersInput = {
   updatedAt?: Date | string
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutGroupInput
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutGroupInput
+  incomes?: Prisma.IncomeUncheckedCreateNestedManyWithoutGroupInput
 }
 
 export type GroupCreateOrConnectWithoutUsersInput = {
@@ -424,6 +447,7 @@ export type GroupUpdateWithoutUsersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   categories?: Prisma.CategoryUpdateManyWithoutGroupNestedInput
   expenses?: Prisma.ExpenseUpdateManyWithoutGroupNestedInput
+  incomes?: Prisma.IncomeUpdateManyWithoutGroupNestedInput
 }
 
 export type GroupUncheckedUpdateWithoutUsersInput = {
@@ -434,6 +458,7 @@ export type GroupUncheckedUpdateWithoutUsersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutGroupNestedInput
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutGroupNestedInput
+  incomes?: Prisma.IncomeUncheckedUpdateManyWithoutGroupNestedInput
 }
 
 export type GroupCreateWithoutCategoriesInput = {
@@ -444,6 +469,7 @@ export type GroupCreateWithoutCategoriesInput = {
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutGroupInput
   expenses?: Prisma.ExpenseCreateNestedManyWithoutGroupInput
+  incomes?: Prisma.IncomeCreateNestedManyWithoutGroupInput
 }
 
 export type GroupUncheckedCreateWithoutCategoriesInput = {
@@ -454,6 +480,7 @@ export type GroupUncheckedCreateWithoutCategoriesInput = {
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutGroupInput
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutGroupInput
+  incomes?: Prisma.IncomeUncheckedCreateNestedManyWithoutGroupInput
 }
 
 export type GroupCreateOrConnectWithoutCategoriesInput = {
@@ -480,6 +507,7 @@ export type GroupUpdateWithoutCategoriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutGroupNestedInput
   expenses?: Prisma.ExpenseUpdateManyWithoutGroupNestedInput
+  incomes?: Prisma.IncomeUpdateManyWithoutGroupNestedInput
 }
 
 export type GroupUncheckedUpdateWithoutCategoriesInput = {
@@ -490,6 +518,7 @@ export type GroupUncheckedUpdateWithoutCategoriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutGroupNestedInput
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutGroupNestedInput
+  incomes?: Prisma.IncomeUncheckedUpdateManyWithoutGroupNestedInput
 }
 
 export type GroupCreateWithoutExpensesInput = {
@@ -500,6 +529,7 @@ export type GroupCreateWithoutExpensesInput = {
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutGroupInput
   categories?: Prisma.CategoryCreateNestedManyWithoutGroupInput
+  incomes?: Prisma.IncomeCreateNestedManyWithoutGroupInput
 }
 
 export type GroupUncheckedCreateWithoutExpensesInput = {
@@ -510,6 +540,7 @@ export type GroupUncheckedCreateWithoutExpensesInput = {
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutGroupInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutGroupInput
+  incomes?: Prisma.IncomeUncheckedCreateNestedManyWithoutGroupInput
 }
 
 export type GroupCreateOrConnectWithoutExpensesInput = {
@@ -536,6 +567,7 @@ export type GroupUpdateWithoutExpensesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutGroupNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutGroupNestedInput
+  incomes?: Prisma.IncomeUpdateManyWithoutGroupNestedInput
 }
 
 export type GroupUncheckedUpdateWithoutExpensesInput = {
@@ -546,6 +578,67 @@ export type GroupUncheckedUpdateWithoutExpensesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutGroupNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutGroupNestedInput
+  incomes?: Prisma.IncomeUncheckedUpdateManyWithoutGroupNestedInput
+}
+
+export type GroupCreateWithoutIncomesInput = {
+  id?: string
+  title: string
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutGroupInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutGroupInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutGroupInput
+}
+
+export type GroupUncheckedCreateWithoutIncomesInput = {
+  id?: string
+  title: string
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutGroupInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutGroupInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutGroupInput
+}
+
+export type GroupCreateOrConnectWithoutIncomesInput = {
+  where: Prisma.GroupWhereUniqueInput
+  create: Prisma.XOR<Prisma.GroupCreateWithoutIncomesInput, Prisma.GroupUncheckedCreateWithoutIncomesInput>
+}
+
+export type GroupUpsertWithoutIncomesInput = {
+  update: Prisma.XOR<Prisma.GroupUpdateWithoutIncomesInput, Prisma.GroupUncheckedUpdateWithoutIncomesInput>
+  create: Prisma.XOR<Prisma.GroupCreateWithoutIncomesInput, Prisma.GroupUncheckedCreateWithoutIncomesInput>
+  where?: Prisma.GroupWhereInput
+}
+
+export type GroupUpdateToOneWithWhereWithoutIncomesInput = {
+  where?: Prisma.GroupWhereInput
+  data: Prisma.XOR<Prisma.GroupUpdateWithoutIncomesInput, Prisma.GroupUncheckedUpdateWithoutIncomesInput>
+}
+
+export type GroupUpdateWithoutIncomesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutGroupNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutGroupNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutGroupNestedInput
+}
+
+export type GroupUncheckedUpdateWithoutIncomesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutGroupNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutGroupNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutGroupNestedInput
 }
 
 
@@ -557,12 +650,14 @@ export type GroupCountOutputType = {
   users: number
   categories: number
   expenses: number
+  incomes: number
 }
 
 export type GroupCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | GroupCountOutputTypeCountUsersArgs
   categories?: boolean | GroupCountOutputTypeCountCategoriesArgs
   expenses?: boolean | GroupCountOutputTypeCountExpensesArgs
+  incomes?: boolean | GroupCountOutputTypeCountIncomesArgs
 }
 
 /**
@@ -596,6 +691,13 @@ export type GroupCountOutputTypeCountExpensesArgs<ExtArgs extends runtime.Types.
   where?: Prisma.ExpenseWhereInput
 }
 
+/**
+ * GroupCountOutputType without action
+ */
+export type GroupCountOutputTypeCountIncomesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.IncomeWhereInput
+}
+
 
 export type GroupSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -606,6 +708,7 @@ export type GroupSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   users?: boolean | Prisma.Group$usersArgs<ExtArgs>
   categories?: boolean | Prisma.Group$categoriesArgs<ExtArgs>
   expenses?: boolean | Prisma.Group$expensesArgs<ExtArgs>
+  incomes?: boolean | Prisma.Group$incomesArgs<ExtArgs>
   _count?: boolean | Prisma.GroupCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["group"]>
 
@@ -638,6 +741,7 @@ export type GroupInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   users?: boolean | Prisma.Group$usersArgs<ExtArgs>
   categories?: boolean | Prisma.Group$categoriesArgs<ExtArgs>
   expenses?: boolean | Prisma.Group$expensesArgs<ExtArgs>
+  incomes?: boolean | Prisma.Group$incomesArgs<ExtArgs>
   _count?: boolean | Prisma.GroupCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type GroupIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -649,6 +753,7 @@ export type $GroupPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     users: Prisma.$UserPayload<ExtArgs>[]
     categories: Prisma.$CategoryPayload<ExtArgs>[]
     expenses: Prisma.$ExpensePayload<ExtArgs>[]
+    incomes: Prisma.$IncomePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1053,6 +1158,7 @@ export interface Prisma__GroupClient<T, Null = never, ExtArgs extends runtime.Ty
   users<T extends Prisma.Group$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Group$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   categories<T extends Prisma.Group$categoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Group$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   expenses<T extends Prisma.Group$expensesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Group$expensesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExpensePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  incomes<T extends Prisma.Group$incomesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Group$incomesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IncomePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1544,6 +1650,30 @@ export type Group$expensesArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.ExpenseScalarFieldEnum | Prisma.ExpenseScalarFieldEnum[]
+}
+
+/**
+ * Group.incomes
+ */
+export type Group$incomesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Income
+   */
+  select?: Prisma.IncomeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Income
+   */
+  omit?: Prisma.IncomeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.IncomeInclude<ExtArgs> | null
+  where?: Prisma.IncomeWhereInput
+  orderBy?: Prisma.IncomeOrderByWithRelationInput | Prisma.IncomeOrderByWithRelationInput[]
+  cursor?: Prisma.IncomeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.IncomeScalarFieldEnum | Prisma.IncomeScalarFieldEnum[]
 }
 
 /**

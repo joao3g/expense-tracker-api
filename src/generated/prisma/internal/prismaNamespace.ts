@@ -388,7 +388,7 @@ export const ModelName = {
   Group: 'Group',
   Category: 'Category',
   Expense: 'Expense',
-  Goal: 'Goal'
+  Income: 'Income'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -404,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "group" | "category" | "expense" | "goal"
+    modelProps: "user" | "group" | "category" | "expense" | "income"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -704,77 +704,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Goal: {
-      payload: Prisma.$GoalPayload<ExtArgs>
-      fields: Prisma.GoalFieldRefs
+    Income: {
+      payload: Prisma.$IncomePayload<ExtArgs>
+      fields: Prisma.IncomeFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.GoalFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload> | null
+          args: Prisma.IncomeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomePayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.GoalFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+          args: Prisma.IncomeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomePayload>
         }
         findFirst: {
-          args: Prisma.GoalFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload> | null
+          args: Prisma.IncomeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomePayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.GoalFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+          args: Prisma.IncomeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomePayload>
         }
         findMany: {
-          args: Prisma.GoalFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>[]
+          args: Prisma.IncomeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomePayload>[]
         }
         create: {
-          args: Prisma.GoalCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+          args: Prisma.IncomeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomePayload>
         }
         createMany: {
-          args: Prisma.GoalCreateManyArgs<ExtArgs>
+          args: Prisma.IncomeCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.GoalCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>[]
+          args: Prisma.IncomeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomePayload>[]
         }
         delete: {
-          args: Prisma.GoalDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+          args: Prisma.IncomeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomePayload>
         }
         update: {
-          args: Prisma.GoalUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+          args: Prisma.IncomeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomePayload>
         }
         deleteMany: {
-          args: Prisma.GoalDeleteManyArgs<ExtArgs>
+          args: Prisma.IncomeDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.GoalUpdateManyArgs<ExtArgs>
+          args: Prisma.IncomeUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.GoalUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>[]
+          args: Prisma.IncomeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomePayload>[]
         }
         upsert: {
-          args: Prisma.GoalUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+          args: Prisma.IncomeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomePayload>
         }
         aggregate: {
-          args: Prisma.GoalAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateGoal>
+          args: Prisma.IncomeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateIncome>
         }
         groupBy: {
-          args: Prisma.GoalGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.GoalGroupByOutputType>[]
+          args: Prisma.IncomeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IncomeGroupByOutputType>[]
         }
         count: {
-          args: Prisma.GoalCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.GoalCountAggregateOutputType> | number
+          args: Prisma.IncomeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IncomeCountAggregateOutputType> | number
         }
       }
     }
@@ -870,16 +870,18 @@ export const ExpenseScalarFieldEnum = {
 export type ExpenseScalarFieldEnum = (typeof ExpenseScalarFieldEnum)[keyof typeof ExpenseScalarFieldEnum]
 
 
-export const GoalScalarFieldEnum = {
+export const IncomeScalarFieldEnum = {
   id: 'id',
+  title: 'title',
+  userId: 'userId',
+  groupId: 'groupId',
   date: 'date',
-  target: 'target',
-  categoryId: 'categoryId',
+  amount: 'amount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type GoalScalarFieldEnum = (typeof GoalScalarFieldEnum)[keyof typeof GoalScalarFieldEnum]
+export type IncomeScalarFieldEnum = (typeof IncomeScalarFieldEnum)[keyof typeof IncomeScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1080,7 +1082,7 @@ export type GlobalOmitConfig = {
   group?: Prisma.GroupOmit
   category?: Prisma.CategoryOmit
   expense?: Prisma.ExpenseOmit
-  goal?: Prisma.GoalOmit
+  income?: Prisma.IncomeOmit
 }
 
 /* Types for Logging */

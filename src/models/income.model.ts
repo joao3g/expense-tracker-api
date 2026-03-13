@@ -5,11 +5,19 @@ import { PrismaClient, Prisma } from '../generated/prisma/client.js';
 const adapter = new PrismaPg({ connectionString: process.env["DATABASE_URL"] });
 const prisma = new PrismaClient({ adapter });
 
-const goalSelect = {
+const incomeSelect = {
     id: true,
+    title: true,
     date: true,
-    target: true,
-    category: {
+    amount: true,
+    user: {
+        select: {
+            id: true,
+            name: true,
+            email: true,
+        }
+    },
+    group: {
         select: {
             id: true,
             title: true
@@ -18,26 +26,33 @@ const goalSelect = {
     createdAt: true
 }
 
-const create = async (data: Prisma.GoalCreateInput) => {
+const create = async (data: Prisma.IncomeCreateInput) => {
     const firstDayOfMonthDate = new Date(data.date);
     firstDayOfMonthDate.setUTCDate(1);
 
     data.date = firstDayOfMonthDate;
 
-    return await prisma.goal.create({ data });
+    return await prisma.income.create({ data });
 }
 
 const getById = async (id: string) => {
-    return await prisma.goal.findUnique({
+    return await prisma.income.findUnique({
         where: { id },
-        select: goalSelect
+        select: incomeSelect
     });
 }
 
-const getByCategory = async (categoryId: string) => {
-    return await prisma.goal.findMany({
-        where: { categoryId },
-        select: goalSelect
+const getByUser = async (userId: string) => {
+    return await prisma.income.findMany({
+        where: { userId },
+        select: incomeSelect
+    });
+}
+
+const getByGroup = async (groupId: string) => {
+    return await prisma.income.findMany({
+        where: { groupId },
+        select: incomeSelect
     });
 }
 
@@ -45,13 +60,13 @@ const getByDate = async (date: Date) => {
     const firstDayOfMonthDate = new Date(date);
     firstDayOfMonthDate.setUTCDate(1);
 
-    return await prisma.goal.findFirst({
+    return await prisma.income.findFirst({
         where: { date: { equals: firstDayOfMonthDate } },
-        select: goalSelect
+        select: incomeSelect
     });
 }
 
-const update = async (id: string, data: Prisma.GoalUpdateInput) => {
+const update = async (id: string, data: Prisma.IncomeUpdateInput) => {
     if (data.date && (typeof data.date === 'string' || data.date instanceof Date)) {
         const firstDayOfMonthDate = new Date(data.date);
         firstDayOfMonthDate.setUTCDate(1);
@@ -59,16 +74,16 @@ const update = async (id: string, data: Prisma.GoalUpdateInput) => {
         data.date = firstDayOfMonthDate;
     }
 
-    return await prisma.goal.update({
+    return await prisma.income.update({
         where: { id },
         data
     });
 }
 
 const remove = async (id: string) => {
-    return await prisma.goal.delete({
+    return await prisma.income.delete({
         where: { id }
     });
 }
 
-export default { create, getById, getByCategory, getByDate, update, remove };
+export default { create, getById, getByGroup, getByUser, getByDate, update, remove };

@@ -3,7 +3,7 @@
 
 generator client {
     provider = "prisma-client"
-    output   = "../generated/prisma"
+    output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -20,6 +20,8 @@ model User {
 	group Group? @relation(fields: [groupId], references: [id])
 	groupId String?
 
+	incomes Income[]
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
@@ -32,6 +34,7 @@ model Group {
 	users User[]
 	categories Category[]
 	expenses Expense[]
+	incomes Income[]
 
 	createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -48,8 +51,6 @@ model Category {
 
 	group Group @relation(fields: [groupId], references: [id])
 	groupId String
-
-	goals Goal[]
 
 	createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -87,17 +88,20 @@ model Expense {
 	@@index([paymentMethod, groupId])
 }
 
-model Goal {
+model Income {
 	id String @id @default(uuid())
 
-	date DateTime // Always the first date of Month
-	target Decimal @db.Decimal(10, 2)
+	title String
 
-	category Category @relation(fields: [categoryId], references: [id])
-	categoryId String
+	user User @relation(fields: [userId], references: [id])
+	userId String
+
+	group Group @relation(fields: [groupId], references: [id])
+	groupId String
+
+	date DateTime // Always the first date of Month
+	amount Decimal @db.Decimal(10, 2)
 
 	createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-
-	@@unique([categoryId, date])
 }

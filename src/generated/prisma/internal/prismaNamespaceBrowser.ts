@@ -55,7 +55,7 @@ export const ModelName = {
   Group: 'Group',
   Category: 'Category',
   Expense: 'Expense',
-  Goal: 'Goal'
+  Income: 'Income'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -127,16 +127,18 @@ export const ExpenseScalarFieldEnum = {
 export type ExpenseScalarFieldEnum = (typeof ExpenseScalarFieldEnum)[keyof typeof ExpenseScalarFieldEnum]
 
 
-export const GoalScalarFieldEnum = {
+export const IncomeScalarFieldEnum = {
   id: 'id',
+  title: 'title',
+  userId: 'userId',
+  groupId: 'groupId',
   date: 'date',
-  target: 'target',
-  categoryId: 'categoryId',
+  amount: 'amount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type GoalScalarFieldEnum = (typeof GoalScalarFieldEnum)[keyof typeof GoalScalarFieldEnum]
+export type IncomeScalarFieldEnum = (typeof IncomeScalarFieldEnum)[keyof typeof IncomeScalarFieldEnum]
 
 
 export const SortOrder = {
