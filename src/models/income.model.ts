@@ -56,12 +56,12 @@ const getByGroup = async (groupId: string) => {
     });
 }
 
-const getByDate = async (date: Date) => {
+const getByDate = async (date: Date, groupId: string) => {
     const firstDayOfMonthDate = new Date(date);
     firstDayOfMonthDate.setUTCDate(1);
 
-    return await prisma.income.findFirst({
-        where: { date: { equals: firstDayOfMonthDate } },
+    return await prisma.income.findMany({
+        where: { date: { equals: firstDayOfMonthDate }, groupId },
         select: incomeSelect
     });
 }

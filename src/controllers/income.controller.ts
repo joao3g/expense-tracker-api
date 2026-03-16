@@ -86,7 +86,7 @@ const getByGroup = async (req: Request, res: Response) => {
     }
 }
 
-const getByDate = async (req: Request, res: Response) => {
+const getByMonth = async (req: Request, res: Response) => {
     try {
         if (!req.user) return res.status(401).json({ message: "Authentication failed!" });
 
@@ -94,9 +94,13 @@ const getByDate = async (req: Request, res: Response) => {
 
         if (!parsed.success) return res.status(400).json(z.treeifyError(parsed.error).properties);
 
+        const userData = await userModel.getByLogin(req.user.login);
+        if (!userData) throw Error("User not found!");
+        if (!userData.group?.id) throw Error("User group not found!");
+
         const { date } = parsed.data;
 
-        const result = await incomeModel.getByDate(new Date(date));
+        const result = await incomeModel.getByDate(new Date(date), userData.group.id);
 
         return res.status(200).json(result);
     } catch (error) {
@@ -149,4 +153,4 @@ const remove = async (req: Request, res: Response) => {
     }
 }
 
-export default { create, getById, getByDate, getByGroup, getByUser, update, remove };
+export default { create, getById, getByMonth, getByGroup, getByUser, update, remove };
