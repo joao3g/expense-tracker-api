@@ -25,7 +25,7 @@ const getByMonth = async (req: Request, res: Response) => {
     try {
         if(!req.user) return res.status(401).json({ message: "Authentication failed!" });
 
-        const parsed = expenseSchema.getByMonth.safeParse(req.body);
+        const parsed = expenseSchema.getByMonth.safeParse(req.params);
         if (!parsed.success) return res.status(400).json(z.treeifyError(parsed.error).properties);
 
         const result = await expenseService.getByMonth(req.user.login, parsed.data);
@@ -41,7 +41,7 @@ const getByTitle = async (req: Request, res: Response) => {
     try {
         if(!req.user) return res.status(401).json({ message: "Authentication failed!" });
 
-        const parsed = expenseSchema.getByTitle.safeParse(req.body);
+        const parsed = expenseSchema.getByTitle.safeParse(req.params);
         if (!parsed.success) return res.status(400).json(z.treeifyError(parsed.error).properties);
 
         const result = await expenseService.getByTitle(req.user.login, parsed.data);
@@ -57,7 +57,7 @@ const getSummarizedByMonth = async (req: Request, res: Response) => {
     try {
         if(!req.user) return res.status(401).json({ message: "Authentication failed!" });
 
-        const parsed = expenseSchema.getSummarizedByMonth.safeParse(req.body);
+        const parsed = expenseSchema.getSummarizedByMonth.safeParse(req.params);
         if (!parsed.success) return res.status(400).json(z.treeifyError(parsed.error).properties);
 
         const result = await expenseService.getSummarizedByMonth(req.user.login, parsed.data);

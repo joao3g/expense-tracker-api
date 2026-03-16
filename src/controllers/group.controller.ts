@@ -35,7 +35,7 @@ const getByUserLogin = async (req: Request, res: Response) => {
         if(!req.user) return res.status(401).json({ message: "Authentication failed!" });
 
         if (req.body) {
-            const parsed = groupSchema.getByUserLogin.safeParse(req.body);
+            const parsed = groupSchema.getByUserLogin.safeParse(req.params);
     
             if (!parsed.success) return res.status(400).json(z.treeifyError(parsed.error).properties);
 
