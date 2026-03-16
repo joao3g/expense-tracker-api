@@ -2,7 +2,7 @@ import 'dotenv/config';
 import userModel from '../models/user.model.js';
 import categoryModel from '../models/category.model.js';
 
-const create = async (userLogin: string, title: string, description: string | undefined) => {
+const create = async (userLogin: string, title: string, description: string | undefined, color: string) => {
     try {
         const userData = await userModel.getByLogin(userLogin);
         if (!userData) throw Error("User not found!");
@@ -11,6 +11,7 @@ const create = async (userLogin: string, title: string, description: string | un
         await categoryModel.create({
             title,
             description,
+            color,
             group: {
                 connect: {
                     id: userData.group.id

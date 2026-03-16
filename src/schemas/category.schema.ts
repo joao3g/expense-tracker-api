@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 const create = z.object({
     title: z.string(),
+    color: z.hex(),
     description: z.string().optional()
 });
 

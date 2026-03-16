@@ -9,6 +9,7 @@ const categorySelect = {
     id: true,
     title: true,
     description: true,
+    color: true,
     createdAt: true,
     group: {
         select: {
