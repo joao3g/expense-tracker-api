@@ -79,10 +79,17 @@ const update = async (id: string, data: Prisma.ExpenseUpdateInput) => {
     });
 }
 
+const getTotalByRange = async (startDate: Date, endDate: Date, groupId?: string) => {
+    return await prisma.expense.aggregate({
+        where: { groupId, date: { gte: startDate, lte: endDate } },
+        _sum: { amount: true }
+    });
+}
+
 const remove = async (id: string) => {
     return await prisma.expense.delete({
         where: { id }
     });
 }
 
-export default { create, getByRangeAndTitle, getByTitle, getSummarizedByRange, getById, update, remove };
+export default { create, getByRangeAndTitle, getByTitle, getSummarizedByRange, getById, getTotalByRange, update, remove };

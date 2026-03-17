@@ -1,12 +1,13 @@
 import z from 'zod';
 import { Request, Response } from 'express';
 import expenseModel from '../models/expense.model.js';
+import userModel from '../models/user.model.js';
 import expenseService from '../services/expense.service.js';
 import expenseSchema from '../schemas/expense.schema.js';
 
 const create = async (req: Request, res: Response) => {
     try {
-        if(!req.user) return res.status(401).json({ message: "Authentication failed!" });
+        if (!req.user) return res.status(401).json({ message: "Authentication failed!" });
 
         const parsed = expenseSchema.create.safeParse(req.body);
 
@@ -23,7 +24,7 @@ const create = async (req: Request, res: Response) => {
 
 const getByMonth = async (req: Request, res: Response) => {
     try {
-        if(!req.user) return res.status(401).json({ message: "Authentication failed!" });
+        if (!req.user) return res.status(401).json({ message: "Authentication failed!" });
 
         const parsed = expenseSchema.getByMonth.safeParse(req.params);
         if (!parsed.success) return res.status(400).json(z.treeifyError(parsed.error).properties);
@@ -39,7 +40,7 @@ const getByMonth = async (req: Request, res: Response) => {
 
 const getByTitle = async (req: Request, res: Response) => {
     try {
-        if(!req.user) return res.status(401).json({ message: "Authentication failed!" });
+        if (!req.user) return res.status(401).json({ message: "Authentication failed!" });
 
         const parsed = expenseSchema.getByTitle.safeParse(req.params);
         if (!parsed.success) return res.status(400).json(z.treeifyError(parsed.error).properties);
@@ -55,7 +56,7 @@ const getByTitle = async (req: Request, res: Response) => {
 
 const getSummarizedByMonth = async (req: Request, res: Response) => {
     try {
-        if(!req.user) return res.status(401).json({ message: "Authentication failed!" });
+        if (!req.user) return res.status(401).json({ message: "Authentication failed!" });
 
         const parsed = expenseSchema.getSummarizedByMonth.safeParse(req.params);
         if (!parsed.success) return res.status(400).json(z.treeifyError(parsed.error).properties);
@@ -65,6 +66,26 @@ const getSummarizedByMonth = async (req: Request, res: Response) => {
         return res.status(200).json(result);
     } catch (error) {
         console.error("[getSummarizedByMonth(controller)]: ", error);
+        return res.status(500).json({ message: "Failed to find expenses!" })
+    }
+}
+
+const totalByRange = async (req: Request, res: Response) => {
+    try {
+        if (!req.user) return res.status(401).json({ message: "Authentication failed!" });
+
+        const userData = await userModel.getByLogin(req.user.login);
+        if (!userData) throw Error("User not found!");
+        if (!userData.group?.id) throw Error("User group not found!");
+
+        const parsed = expenseSchema.totalByRange.safeParse(req.body);
+        if (!parsed.success) return res.status(400).json(z.treeifyError(parsed.error).properties);
+
+        const result = await expenseModel.getTotalByRange(new Date(parsed.data.startDate), new Date(parsed.data.endDate), userData.group.id);
+
+        return res.status(200).json(result);
+    } catch (error) {
+        console.error("[totalByRange(controller)]: ", error);
         return res.status(500).json({ message: "Failed to find expenses!" })
     }
 }
@@ -115,4 +136,4 @@ const remove = async (req: Request, res: Response) => {
     }
 }
 
-export default { create, getByMonth, getByTitle, getSummarizedByMonth, update, remove };
+export default { create, getByMonth, getByTitle, getSummarizedByMonth, totalByRange, update, remove };
