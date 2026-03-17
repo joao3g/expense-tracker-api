@@ -12,9 +12,9 @@ const create = async (req: Request, res: Response) => {
 
         if (!parsed.success) return res.status(400).json(z.treeifyError(parsed.error).properties);
 
-        const { title, description } = parsed.data;
+        const { title, description, color } = parsed.data;
 
-        await categoryService.create(req.user.login, title, description)
+        await categoryService.create(req.user.login, title, description, color);
 
         return res.sendStatus(201);
     } catch (error) {
