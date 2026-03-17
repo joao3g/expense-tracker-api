@@ -14,6 +14,11 @@ const getByUser = z.object({
     id: z.string().optional()
 });
 
+const totalByRange = z.object({
+    startDate: z.iso.date(),
+    endDate: z.iso.date()
+});
+
 const getByGroup = z.object({
     id: z.string().optional()
 });
@@ -33,4 +38,4 @@ const remove = z.object({
     id: z.string()
 });
 
-export default { create, getById, getByDate, getByUser, getByGroup, update, remove };
+export default { create, getById, getByDate, getByUser, getByGroup, totalByRange, update, remove };

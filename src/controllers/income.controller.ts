@@ -109,6 +109,26 @@ const getByMonth = async (req: Request, res: Response) => {
     }
 }
 
+const totalByRange = async (req: Request, res: Response) => {
+    try {
+        if (!req.user) return res.status(401).json({ message: "Authentication failed!" });
+
+        const userData = await userModel.getByLogin(req.user.login);
+        if (!userData) throw Error("User not found!");
+        if (!userData.group?.id) throw Error("User group not found!");
+
+        const parsed = incomeSchema.totalByRange.safeParse(req.body);
+        if (!parsed.success) return res.status(400).json(z.treeifyError(parsed.error).properties);
+
+        const result = await incomeModel.getTotalByRange(new Date(parsed.data.startDate), new Date(parsed.data.endDate), userData.group.id);
+
+        return res.status(200).json(result);
+    } catch (error) {
+        console.error("[totalByRange(controller)]: ", error);
+        return res.status(500).json({ message: "Failed to find expenses!" })
+    }
+}
+
 const update = async (req: Request, res: Response) => {
     try {
         const parsed = incomeSchema.update.safeParse(req.body);
@@ -153,4 +173,4 @@ const remove = async (req: Request, res: Response) => {
     }
 }
 
-export default { create, getById, getByMonth, getByGroup, getByUser, update, remove };
+export default { create, getById, getByMonth, getByGroup, getByUser, totalByRange, update, remove };

@@ -66,6 +66,13 @@ const getByDate = async (date: Date, groupId: string) => {
     });
 }
 
+const getTotalByRange = async (startDate: Date, endDate: Date, groupId?: string) => {
+    return await prisma.income.aggregate({
+        where: { groupId, date: { gte: startDate, lte: endDate } },
+        _sum: { amount: true }
+    });
+}
+
 const update = async (id: string, data: Prisma.IncomeUpdateInput) => {
     if (data.date && (typeof data.date === 'string' || data.date instanceof Date)) {
         const firstDayOfMonthDate = new Date(data.date);
@@ -86,4 +93,4 @@ const remove = async (id: string) => {
     });
 }
 
-export default { create, getById, getByGroup, getByUser, getByDate, update, remove };
+export default { create, getById, getByGroup, getByUser, getByDate, getTotalByRange, update, remove };
