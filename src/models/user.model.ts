@@ -59,6 +59,8 @@ const getForAuthByLogin = async (login: string) => {
         where: { login },
         select: {
             login: true,
+            name: true,
+            email: true,
             password: true
         }
     });

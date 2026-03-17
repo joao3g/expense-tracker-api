@@ -16,7 +16,11 @@ const login = async (login: string, password: string) => {
         if (!isPasswordCorrect) throw new Error("Incorrect password!");
         return { 
             token: jwt.sign(
-                { login }, 
+                { 
+                    login,
+                    name: userData.name,
+                    email: userData.email
+                }, 
                 SECRET_KEY,
                 { expiresIn: '1Yr' }
             ) 
