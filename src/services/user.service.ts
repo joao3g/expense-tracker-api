@@ -10,20 +10,25 @@ const login = async (login: string, password: string) => {
     try {
         const userData = await User.getForAuthByLogin(login);
         if (!userData) throw new Error("User not found!");
-    
+
         const isPasswordCorrect = await bcrypt.compare(password, userData.password);
-        
+
         if (!isPasswordCorrect) throw new Error("Incorrect password!");
-        return { 
+        return {
             token: jwt.sign(
-                { 
+                {
                     login,
                     name: userData.name,
                     email: userData.email
-                }, 
+                },
                 SECRET_KEY,
                 { expiresIn: '1Yr' }
-            ) 
+            ),
+            user: {
+                login,
+                name: userData.name,
+                email: userData.email
+            }
         };
     } catch (error) {
         console.error("[login(service)]: ", error);
