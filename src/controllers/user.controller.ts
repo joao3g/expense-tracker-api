@@ -43,4 +43,10 @@ const login = async (req: Request, res: Response) => {
     }
 }
 
-export default { login, register };
+const getCurrentUser = async (req: Request, res: Response) => {
+    if (!req.user) return res.status(401).json({ message: "Authentication failed!" });
+
+    return res.status(200).json(req.user);
+}
+
+export default { login, register, getCurrentUser };
