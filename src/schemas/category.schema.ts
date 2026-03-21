@@ -12,8 +12,9 @@ const getByUserLogin = z.object({
 
 const update = z.object({
     id: z.string(),
-    title: z.string(),
-    description: z.string().optional()
+    title: z.string().optional(),
+    description: z.string().optional(),
+    color: z.string().optional()
 });
 
 const remove = z.object({

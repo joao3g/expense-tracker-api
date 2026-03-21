@@ -96,23 +96,9 @@ const update = async (req: Request, res: Response) => {
 
         if (!parsed.success) return res.status(400).json(z.treeifyError(parsed.error).properties);
 
-        const currentExpense = await expenseModel.getById(parsed.data.id);
+        const updatedItem = await expenseService.update(parsed.data);
 
-        const toUpdate = {
-            id: parsed.data.id || currentExpense?.id,
-            title: parsed.data.title || currentExpense?.title,
-            description: parsed.data.description || currentExpense?.description,
-            amount: parsed.data.amount || currentExpense?.amount,
-            date: parsed.data.date || currentExpense?.date,
-            paymentMethod: parsed.data.paymentMethod || currentExpense?.paymentMethod,
-            group: { connect: { id: currentExpense?.groupId } },
-            category: { connect: { id: currentExpense?.categoryId } },
-        };
-
-        if (parsed.data.date) toUpdate.date = new Date(parsed.data.date);
-        await expenseModel.update(parsed.data.id, toUpdate);
-
-        return res.sendStatus(200);
+        return res.status(200).json(updatedItem);
     } catch (error) {
         console.error("[updateExpense]: ", error);
         return res.status(500).json({ message: "Failed to update expense!" })

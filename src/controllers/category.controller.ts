@@ -42,14 +42,9 @@ const update = async (req: Request, res: Response) => {
 
         if (!parsed.success) return res.status(400).json(z.treeifyError(parsed.error).properties);
 
-        const { id, title, description } = parsed.data;
+        const updatedItem = await categoryService.update(parsed.data);
 
-        await categoryModel.update(id, {
-            title,
-            description
-        });
-
-        return res.sendStatus(200);
+        return res.status(200).json(updatedItem);
     } catch (error) {
         console.error("[updateCategory]: ", error);
         return res.status(500).json({ message: "Failed to update category!" });

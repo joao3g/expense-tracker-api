@@ -71,7 +71,8 @@ model Expense {
 	title String
 	description String?
 	amount Decimal @db.Decimal(10, 2)
-	date DateTime
+	transactionDate DateTime
+	dueDate DateTime
 
 	paymentMethod PaymentMethod
 
@@ -84,7 +85,7 @@ model Expense {
 	createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-	@@index([date, groupId])
+	@@index([dueDate, groupId])
 	@@index([categoryId, groupId])
 	@@index([paymentMethod, groupId])
 }

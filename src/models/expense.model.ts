@@ -10,7 +10,8 @@ const expenseSelect = {
     title: true,
     description: true,
     amount: true,
-    date: true,
+    transactionDate: true,
+    dueDate: true,
     paymentMethod: true,
     category: true,
     createdAt: true
@@ -28,7 +29,7 @@ const getById = async (id: string) => {
 
 const getByRangeAndTitle = async (startDate: Date, endDate: Date, groupId?: string, title?: string) => {
     return await prisma.expense.findMany({
-        where: { title, date: { gte: startDate, lte: endDate }, groupId },
+        where: { title, dueDate: { gte: startDate, lte: endDate }, groupId },
         select: expenseSelect
     });
 }
@@ -44,7 +45,7 @@ const getSummarizedByRange = async (startDate: Date, endDate: Date, groupId?: st
     const summarizedByTitle = await prisma.expense.groupBy({
         where: {
             groupId,
-            date: { gte: startDate, lte: endDate },
+            dueDate: { gte: startDate, lte: endDate },
         },
         by: ["title"],
         _sum: {
@@ -55,7 +56,7 @@ const getSummarizedByRange = async (startDate: Date, endDate: Date, groupId?: st
     const summarizedByCategory = await prisma.expense.groupBy({
         where: {
             groupId,
-            date: { gte: startDate, lte: endDate },
+            dueDate: { gte: startDate, lte: endDate },
         },
         by: ["categoryId"],
         _sum: {
@@ -81,7 +82,7 @@ const update = async (id: string, data: Prisma.ExpenseUpdateInput) => {
 
 const getTotalByRange = async (startDate: Date, endDate: Date, groupId?: string) => {
     return await prisma.expense.aggregate({
-        where: { groupId, date: { gte: startDate, lte: endDate } },
+        where: { groupId, dueDate: { gte: startDate, lte: endDate } },
         _sum: { amount: true }
     });
 }
