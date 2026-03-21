@@ -64,12 +64,24 @@ const getSummarizedByRange = async (startDate: Date, endDate: Date, groupId?: st
         }
     });
 
+    const summarizedByPaymentMethod = await prisma.expense.groupBy({
+        where: {
+            groupId,
+            dueDate: { gte: startDate, lte: endDate },
+        },
+        by: ["paymentMethod"],
+        _sum: {
+            amount: true
+        }
+    });
+
     return {
         summarizedByTitle,
         summarizedByCategory: await Promise.all(summarizedByCategory.map(async item => {
             const categoryItem = await prisma.category.findUnique({ where: { id: item.categoryId } });
             return { ...item, categoryTitle: categoryItem?.title, categoryColor: categoryItem?.color };
-        }))
+        })),
+        summarizedByPaymentMethod
     }
 }
 

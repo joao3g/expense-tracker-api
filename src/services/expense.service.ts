@@ -19,7 +19,10 @@ const create = async (userLogin: string, data: z.infer<typeof expenseSchema.crea
         if (!userData.group?.id) throw Error("User group not found!");
 
         await expenseModel.create({
-            ...data,
+            title: data.title,
+            description: data.description,
+            paymentMethod: data.paymentMethod,
+            amount: data.amount,
             transactionDate: new Date(data.date),
             dueDate: data.paymentMethod === "CREDIT" ? calculateNextInvoiceDate(new Date(data.date), 3) : new Date(data.date),
             category: { connect: { id: data.category } },
